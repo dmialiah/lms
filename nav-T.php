@@ -22,6 +22,7 @@ $tutor_name = isset($_SESSION['tutor_name']) ? $_SESSION['tutor_name'] : 'Tutor'
       <a href="listOnlineSession.php">Online Session</a>
       <a href="listPU.php">Premium User</a>
     </div>
+
     </nav>
     <div class="dropdown">
       <div class="profile">

@@ -13,7 +13,7 @@
     <main>
     <div class="container my-5">
         <h2>List of Online Session</h2>
-        <a class="btn btn-secondary" href="/SLMS2/addOnlineSession.php" role="button">Add Online Session</a>
+        <a class="btn btn-secondary" href="/GitHub/LMS/addOnlineSession.php" role="button">Add Online Session</a>
         <br>
         <table class="table">
             <thead>

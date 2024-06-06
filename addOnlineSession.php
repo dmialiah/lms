@@ -7,43 +7,39 @@ $database = "selfodb";
 // Create connection
 $connection = new mysqli($servername, $username, $password, $database);
 
-$online_id = "";
 $course_code = "";
-$pdf_link = "";
-$tutor_id = "";
+$link_meet = "";
 
 $errorMessage = "";
 $successMessage = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $online_id = $_POST["online_id"];
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $course_code = $_POST["course_code"];
-    $pdf_link = $_POST["pdf_link"];
-    $tutor_id = $_POST["tutor_id"];
+    $link_meet = $_POST["link_meet"];
 
     do {
-        if (empty($online_id) || empty($course_code) || empty($pdf_link) || empty($tutor_id)) {
+        if ( empty($course_code) || empty($link_meet)) {
             $errorMessage = "All the fields are required";
             break;
         }
 
-        // Add new user to database
-        $sql = "INSERT INTO online_session (online_id, course_code, pdf_link, tutor_id) VALUES ('$online_id', '$course_code', '$pdf_link', '$tutor_id')";
-        $result = $connection->query($sql);
+        // Add new session to database
+        $sql = "INSERT INTO online_session ( course_code, link_meet) VALUES ( ?, ?)";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("sss", $course_code, $link_meet);
+        $result = $stmt->execute();
 
         if (!$result) {
             $errorMessage = "Invalid query: " . $connection->error;
             break;
         }
 
-        $online_id = "";
         $course_code = "";
-        $pdf_link = "";
-        $tutor_id = "";
+        $link_meet = "";
 
-        $successMessage = "Online Session added correctly";
+        $successMessage = "Online session added correctly";
 
-        header("location: /SLMS2/listOnlineSession.php");
+        header("Location: listOnlineSession.php");
         exit;
 
     } while (false);
@@ -55,49 +51,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/icon.png"/>
     <title>Online Session</title>
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <main>
     <div class="container my-5">
         <h2>New Online Session</h2>
 
         <?php
         if (!empty($errorMessage)) {
-           echo "
-           <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-           <strong>$errorMessage</strong>
-           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-           </div>
-           "; 
+            echo "
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            <strong>$errorMessage</strong>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+            "; 
         }
         ?>
+
         <form method="post">
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">ID</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="online_id" value="<?php echo $online_id; ?>">
-                </div>
-            </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Course Code</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="course_code" value="<?php echo $course_code; ?>">
+                    <input type="text" class="form-control" name="course_code" value="<?php echo htmlspecialchars($course_code, ENT_QUOTES, 'UTF-8'); ?>">
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Content</label>
+                <label class="col-sm-3 col-form-label">Link Meeting</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="pdf_link" value="<?php echo $pdf_link; ?>">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Tutor ID</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="tutor_id" value="<?php echo $tutor_id; ?>">
+                    <input type="text" class="form-control" name="link_meet" value="<?php echo htmlspecialchars($link_meet, ENT_QUOTES, 'UTF-8'); ?>">
                 </div>
             </div>
 
@@ -121,11 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="/SLMS2/listOnlineSession.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="listOnlineSession.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>
     </div>
-    </main>
 </body>
 </html>

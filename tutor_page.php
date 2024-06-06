@@ -15,7 +15,7 @@
     <div class="row">
       <div class="column">
         <div id="Additional Notes" class="box-content">
-        <a href="listAdditionalNotes.php"><img src="../images/additionalNotes.jpg" alt="Book Icon"></a>
+        <a href="listAdditionalNotes.php"><img src="../images/additionalNotes" alt="Book Icon"></a>
           <h2>Additional Notes</h2>
         </div>
       </div>
