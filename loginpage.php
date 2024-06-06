@@ -32,7 +32,7 @@
       <img src="images/selfo.jpg" alt="Company Logo" style="width: 140px; height: auto;">
     </div>
     <form id="login-form" action="loginSession.php" method="post">
-      <input type="text" name="uid" placeholder="User ID" required>
+      <input type="text" name="un" placeholder="User Name" required>
       <input type="password" name="password" placeholder="Password" required>
       <input type="submit" value="Login">
     </form>
