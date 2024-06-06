@@ -31,7 +31,7 @@ try {
         // Check if any row was deleted
         if ($stmt->affected_rows > 0) {
             // Record deleted successfully, redirect to listAdditionalNotes.php
-            header("Location: /SLMS2/listAdditionalNotes.php");
+            header("Location: listAdditionalNotes.php");
             exit;
         } else {
             $errorMessage = "No record found with the specified ID.";
@@ -54,7 +54,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/icon.png"/>
-    <title>Study Material</title>
+    <title>Additional Notes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -91,7 +91,7 @@ try {
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-secondary" href="/SLMS2/listAdditionalNotes.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-secondary" href="listAdditionalNotes.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>

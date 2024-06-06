@@ -9,30 +9,52 @@ $database = "selfodb";
 
 // Database connection
 $conn = new mysqli($servername, $username, $password, $database);
-
+$paper_id = "";
 $errorMessage = "";
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if 'paper_id' is set
-        if (isset($_POST['paper_id'])) {
+        if (!empty($_POST['paper_id'])) {
             $id = $_POST['paper_id']; // ID to delete (VARCHAR)
         } else {
             throw new Exception("Error: 'paper_id' not set.");
         }
 
-        // Prepare a delete statement
-        $stmt = $conn->prepare("DELETE FROM past_year_paper WHERE paper_id = ?");
-        $stmt->bind_param("s", $id); // "s" indicates the parameter is a string
-
-        // Execute the statement
+        // Retrieve the file path from the database
+        $stmt = $conn->prepare("SELECT file_path FROM past_year_paper WHERE paper_id = ?");
+        $stmt->bind_param("s", $id);
         $stmt->execute();
+        $stmt->store_result();
 
-        // Check if any row was deleted
-        if ($stmt->affected_rows > 0) {
-            // Record deleted successfully, redirect to listPastYear.php
-            header("Location: /SLMS2/listPastYear.php");
-            exit;
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($file_path);
+            $stmt->fetch();
+
+            // Delete the file from the file system
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            } else {
+                throw new Exception("File not found.");
+            }
+
+            $stmt->close();
+
+            // Prepare a delete statement for the record
+            $stmt = $conn->prepare("DELETE FROM past_year_paper WHERE paper_id = ?");
+            $stmt->bind_param("s", $id);
+
+            // Execute the statement
+            $stmt->execute();
+
+            // Check if any row was deleted
+            if ($stmt->affected_rows > 0) {
+                // Record deleted successfully, redirect to listPastYear.php
+                header("Location: listPastYear.php");
+                exit;
+            } else {
+                $errorMessage = "No record found with the specified ID.";
+            }
         } else {
             $errorMessage = "No record found with the specified ID.";
         }
@@ -42,7 +64,7 @@ try {
     }
     $conn->close();
 } catch (mysqli_sql_exception $e) {
-    $errorMessage = "Error: " . $e->getMessage();
+    $errorMessage = "Database error: " . $e->getMessage();
 } catch (Exception $e) {
     $errorMessage = "Error: " . $e->getMessage();
 }
@@ -64,8 +86,9 @@ try {
     </script>
 </head>
 <body>
+    <main>
     <div class="container my-5">
-        <h2>Delete Past Year Paper</h2>
+        <h2>Delete Past Year</h2>
 
         <?php
         if (!empty($errorMessage)) {
@@ -82,7 +105,7 @@ try {
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">ID</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="paper_id" value="">
+                    <input type="text" class="form-control" name="paper_id" value="<?php echo $paper_id; ?>">
                 </div>
             </div>
 
@@ -91,10 +114,11 @@ try {
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-secondary" href="/SLMS2/listPastYear.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-secondary" href="listPastYear.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>
     </div>
+    </main>
 </body>
 </html>

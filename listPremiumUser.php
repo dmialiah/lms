@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <?php include('nav-A.php'); ?>
+    <header>
+        <img src="images/selfo.jpg" alt="Company Logo" style="width: 70px; height: auto;">
+        <nav>
+            <a href=" adminPage.php">Home</a>
+            <a href=" listPremiumUser.php">Premium User</a>
+            <a href=" listBasicUser.php">Basic User</a>
+            <a href=" listStudyMaterial.php">Study Material</a>
+            <a href=" listPastYear.php">Past Year</a>
+            <a href=" listTutor.php">Tutor</a>
+        </nav>
+    </header>
     <main>
     <div class="container my-5">
         <h2>List of Premium User</h2>
@@ -18,7 +28,6 @@
                 <tr>
                     <th>ID</th>
                     <th>PREMIUM USER NAME</th>
-                    <th>PREMIUM USER PASSWORD</th>
                     <th>PREMIUM USER PHONE</th>
                     <th>PREMIUM USER EMAIL</th>
                     <th>OPTIONS</th>
@@ -52,11 +61,10 @@
                     echo "<tr>
                     <td>$row[premium_id]</td>
                     <td>$row[premium_name]</td>
-                    <td>$row[premium_password]</th>
                     <td>$row[premium_phone]</td>
                     <td>$row[premium_email]</td>
                     <td>
-                        <a class='btn btn-danger btn-sm' href='/SLMS2/deletePremiumUser.php?premium_id=$row[premium_id]'>Delete</a>
+                        <a class='btn btn-danger btn-sm' href='deletePremiumUser.php?premium_id=$row[premium_id]'>Delete</a>
                     </td>
                 </tr>
                 ";

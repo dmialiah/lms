@@ -8,20 +8,29 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <?php include('nav-A.php'); ?>
-    
+    <header>
+        <img src="images/selfo.jpg" alt="Company Logo" style="width: 70px; height: auto;">
+        <nav>
+            <a href="adminPage.php">Home</a>
+            <a href="listPremiumUser.php">Premium User</a>
+            <a href="listBasicUser.php">Basic User</a>
+            <a href="listStudyMaterial.php">Study Material</a>
+            <a href="listPastYear.php">Past Year</a>
+            <a href="listTutor.php">Tutor</a>
+        </nav>
+    </header>
     <main>
     <div class="container my-5">
         <h2>List of Past Year</h2>
-        <a class="btn btn-secondary" href="/SLMS2/addPastYear.php" role="button">Add Past Year Paper</a>
+        <a class="btn btn-secondary" href="addPastYear.php" role="button">Add Past Year</a>
         <br>
         <table class="table">
             <thead>
                 <tr>
-                    <th>PAPER ID</th>
+                    <th>ID</th>
                     <th>COURSE CODE</th>
-                    <th>PAST YEAR PAPER</th>
-                    <th>ANSWER PAPER</th>
+                    <th>FILE NAME</th>
+                    <th>UPLOAD DATE</th>
                     <th>OPTIONS</th>
                 </tr>
             </thead>
@@ -51,16 +60,16 @@
                 //read data of each row
                 while($row = $result->fetch_assoc()){
                     echo "<tr>
-                    <td>$row[paper_id]</td>
-                    <td>$row[course_code]</td>
-                    <td>$row[paper]</td>
-                    <td>$row[answer]</td>
+                    <td>{$row['paper_id']}</td>
+                    <td>{$row['course_code']}</td>
+                    <td>{$row['file_name']}</td>
+                    <td>{$row['upload_date']}</td>
                     <td>
-                        <a class='btn btn-primary btn-sm' href='/SLMS2/updatePastYear.php?paper_id=$row[paper_id]'>Update</a>
-                        <a class='btn btn-danger btn-sm' href='/SLMS2/deletePastYear.php?paper_id=$row[paper_id]'>Delete</a>
+                        <a class='btn btn-primary btn-sm' href='updatePastYear.php?paper_id={$row['paper_id']}'>Update</a>
+                        <a class='btn btn-danger btn-sm' href='deletePastYear.php?paper_id={$row['paper_id']}'>Delete</a>
+                        <a class='btn btn-success btn-sm' href='downloadStudyMaterial.php?file_id={$row['paper_id']}'>Download</a>
                     </td>
-                </tr>
-                ";
+                </tr>";
                 }
                 ?>
             </tbody>

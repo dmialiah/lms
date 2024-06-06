@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <?php include('nav-A.php'); ?>
-    
+    <header>
+        <img src="images/selfo.jpg" alt="Company Logo" style="width: 70px; height: auto;">
+        <nav>
+            <a href=" adminPage.php">Home</a>
+            <a href=" listPremiumUser.php">Premium User</a>
+            <a href=" listBasicUser.php">Basic User</a>
+            <a href=" listStudyMaterial.php">Study Material</a>
+            <a href=" listPastYear.php">Past Year</a>
+            <a href=" listTutor.php">Tutor</a>
+        </nav>
+    </header>
     <main>
     <div class="container my-5">
         <h2>List of Basic User</h2>
@@ -55,7 +64,7 @@
                     <td>$row[basic_phone]</td>
                     <td>$row[basic_email]</td>
                     <td>
-                        <a class='btn btn-danger btn-sm' href='/SLMS2/deleteBasicUser.php?basic_id=$row[basic_id]'>Delete</a>
+                        <a class='btn btn-danger btn-sm' href='deleteBasicUser.php?basic_id=$row[basic_id]'>Delete</a>
                     </td>
                 </tr>
                 ";
