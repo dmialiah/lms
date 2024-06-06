@@ -12,7 +12,7 @@ $connection = new mysqli($servername, $username, $password, $database);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Material</title>
+  <title>Past Year</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -91,11 +91,8 @@ $connection = new mysqli($servername, $username, $password, $database);
   </style>
 </head>
 <body>
-  <ul>
-    <li class="logo"><img src="selfo.png" alt="Company Logo"></li>
-    <li><a href="basicHome.php" class="home-link">Home</a></li>
-	<li><a href="studyMaterialBasic.php" class="material-link">Study Material</a></li>
-  </ul>
+<?php include('nav-P.php'); ?>
+
 
   <div style="padding: 80px 20px;">
     <div class="row">

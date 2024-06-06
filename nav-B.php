@@ -19,7 +19,7 @@ $basic_name = isset($_SESSION['basic_name']) ? $_SESSION['basic_name'] : 'Basic 
     <nav>
       <a class="active" href="basicMainpage.php">Home</a>
       <a href="studyMaterialBasic.php">Study Material</a>
-      <a href="listPU.php">Past Year</a>
+      <a href="paperBasic.php">Past Year</a>
     </nav>
     <div class="dropdown">
       <div class="profile">

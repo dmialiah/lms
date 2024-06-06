@@ -82,11 +82,8 @@
   </style>
 </head>
 <body>
-  <ul>
-    <li class="logo"><img src="selfo.png" alt="Company Logo"></li>
-    <li><a href="basicHome.php" class="home-link">Home</a></li>
-	<li><a href="paperBasic.php" class="paper-link">Past Year</a></li>
-  </ul>
+<?php include('nav-B.php'); ?>
+
 
   <div style="padding: 80px 20px;">
     <div class="row">

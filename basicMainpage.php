@@ -21,7 +21,7 @@
       </div>
       <div class="column">
       <div id="Past Year" class="box-content">
-        <a href="listPU.php"><img src="../images/studymaterial.png" alt="Book Icon"></a>
+        <a href="paperBasic.php"><img src="../images/pastyear.png" alt="Question Icon"></a>
           <h2>Past Year</h2>
         </div>
       </div>

@@ -15,13 +15,13 @@
     <div class="row">
       <div class="column">
         <div id="Additional Notes" class="box-content">
-        <a href="listAdditionalNotes.php"><img src="../images/studymaterial.png" alt="Book Icon"></a>
+        <a href="listAdditionalNotes.php"><img src="../images/additionalNotes.jpg" alt="Book Icon"></a>
           <h2>Additional Notes</h2>
         </div>
       </div>
       <div class="column">
         <div id="Online Session" class="box-content">
-        <a href="listOnlineSession.php"><img src="../images/onlineSessione.png" alt="Online Class Icon"></a>
+        <a href="listOnlineSession.php"><img src="../images/onlineSessione.jpg" alt="Online Class Icon"></a>
           <h2>Online Session</h2>
         </div>
       </div>

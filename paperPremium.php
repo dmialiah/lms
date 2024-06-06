@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "selfo(1)";
+$database = "selfodb";
 
 //create connection
 $connection = new mysqli($servername, $username, $password, $database);
@@ -91,11 +91,8 @@ $connection = new mysqli($servername, $username, $password, $database);
   </style>
 </head>
 <body>
-  <ul>
-    <li class="logo"><img src="selfo.png" alt="Company Logo"></li>
-    <li><a href="premiumHome2.php" class="home-link">Home</a></li>
-	<li><a href="studyMaterialPremium.php" class="material-link">Study Material</a></li>
-  </ul>
+<?php include('nav-P.php'); ?>
+
 
   <div style="padding: 80px 20px;">
     <div class="row">
