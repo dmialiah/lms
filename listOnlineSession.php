@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<?php include('nav-T.php'); ?>
-
+    <?php include('nav-T.php'); ?>
     <main>
     <div class="container my-5">
         <h2>List of Online Session</h2>
-        <a class="btn btn-secondary" href="/GitHub/LMS/addOnlineSession.php" role="button">Add Online Session</a>
+        <a class="btn btn-secondary" href="addOnlineSession.php" role="button">Add Online Session</a>
         <br>
         <table class="table">
             <thead>
@@ -21,7 +20,6 @@
                     <th>ONLINE SESSION ID</th>
                     <th>COURSE CODE</th>
                     <th>CONTENT</th>
-                    <th>TUTOR ID</th>
                     <th>OPTIONS</th>
                 </tr>
             </thead>
@@ -53,11 +51,10 @@
                     echo "<tr>
                     <td>$row[online_id]</td>
                     <td>$row[course_code]</th>
-                    <td>$row[pdf_link]</th>
-                    <td>$row[tutor_id]</td>
+                    <td>$row[link_meet]</th>
                     <td>
-                        <a class='btn btn-primary btn-sm' href='/SLMS2/updateOnlineSession.php?online_id=$row[online_id]'>Update</a>
-                        <a class='btn btn-danger btn-sm' href='/SLMS2/deleteOnlineSession.php?online_id=$row[online_id]'>Delete</a>
+                        <a class='btn btn-primary btn-sm' href='updateOnlineSession.php?online_id=$row[online_id]'>Update</a>
+                        <a class='btn btn-danger btn-sm' href='deleteOnlineSession.php?online_id=$row[online_id]'>Delete</a>
                     </td>
                 </tr>
                 ";

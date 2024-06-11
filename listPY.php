@@ -8,14 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <img src="images/selfo.jpg" alt="Company Logo" style="width: 70px; height: auto;">
-        <nav>
-			<a href=" basicMainPage.php">Home</a>
-			<a href=" listSM.php">Study Material</a>
-			<a href=" listPY.php">Past Year</a>
-        </nav>
-    </header>
+<?php include('nav-B.php'); ?>
     <main>
     <div class="container my-5">
         <h2>List of Past Year</h2>
@@ -23,10 +16,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>PAPER ID</th>
+                    <th>ID</th>
                     <th>COURSE CODE</th>
-                    <th>PAST YEAR PAPER</th>
-                    <th>ANSWER PAPER</th>
+                    <th>FILE NAME</th>
+                    <th>UPLOAD DATE</th>
+                    <th>OPTIONS</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,12 +49,14 @@
                 //read data of each row
                 while($row = $result->fetch_assoc()){
                     echo "<tr>
-                    <td>$row[paper_id]</td>
-                    <td>$row[course_code]</td>
-                    <td>$row[paper]</td>
-                    <td>$row[answer]</td>
-                </tr>
-                ";
+                    <td>{$row['paper_id']}</td>
+                    <td>{$row['course_code']}</td>
+                    <td>{$row['file_name']}</td>
+                    <td>{$row['upload_date']}</td>
+                    <td>
+                        <a class='btn btn-primary btn-sm' href='downloadPY.php?file_id={$row['paper_id']}'>Download</a>
+                    </td>
+                </tr>";
                 }
                 ?>
             </tbody>

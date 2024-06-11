@@ -33,12 +33,11 @@
       </div>
       <div class="column">
         <div id="Tutor" class="box-content">
-          <a href="#"><img src="images/tutor.png" alt="Chatbox Icon"></a>
+          <a href="listTutor.php"><img src="images/tutor.png" alt="Chatbox Icon"></a>
           <h2>Tutor</h2>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 </html>

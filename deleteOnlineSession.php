@@ -15,14 +15,14 @@ $errorMessage = "";
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if 'basic_id' is set
-        if (isset($_POST['basic_id'])) {
-            $id = $_POST['basic_id']; // ID to delete (VARCHAR)
+        if (isset($_POST['online_id'])) {
+            $id = $_POST['online_id']; // ID to delete (INTEGER)
         } else {
-            throw new Exception("Error: 'basic_id' not set.");
+            throw new Exception("Error: 'online_id' not set.");
         }
 
         // Prepare a delete statement
-        $stmt = $conn->prepare("DELETE FROM basic_user WHERE basic_id = ?");
+        $stmt = $conn->prepare("DELETE FROM online_session WHERE online_id = ?");
         $stmt->bind_param("s", $id); // "s" indicates the parameter is a string
 
         // Execute the statement
@@ -31,7 +31,7 @@ try {
         // Check if any row was deleted
         if ($stmt->affected_rows > 0) {
             // Record deleted successfully, redirect to listBasicUser.php
-            header("Location: listBasicUser.php");
+            header("Location: listOnlineSession.php");
             exit;
         } else {
             $errorMessage = "No record found with the specified ID.";
@@ -54,7 +54,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/icon.png"/>
-    <title>Basic User</title>
+    <title>Online Session</title>
     <script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function confirmDelete() {
@@ -144,7 +144,7 @@ try {
         }
     </style>
     <div class="container my-5">
-        <h2>Delete User</h2>
+        <h2>Delete Session</h2>
 
         <?php
         if (!empty($errorMessage)) {
@@ -161,7 +161,7 @@ try {
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label" style="margin: 10px">ID</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="basic_id" value="">
+                    <input type="text" class="form-control" name="online_id" value="">
                 </div>
             </div>
 
@@ -170,7 +170,7 @@ try {
                     <button type="submit" class="btn btn-primary">Delete</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="listBasicUser.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="listOnlineSession.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>

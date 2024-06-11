@@ -8,17 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <img src="images/selfo.jpg" alt="Company Logo" style="width: 70px; height: auto;">
-        <nav>
-            <a href="adminPage.php">Home</a>
-            <a href="listPremiumUser.php">Premium User</a>
-            <a href="listBasicUser.php">Basic User</a>
-            <a href="listStudyMaterial.php">Study Material</a>
-            <a href="listPastYear.php">Past Year</a>
-            <a href="listTutor.php">Tutor</a>
-        </nav>
-    </header>
+<?php include('nav-A.php'); ?>
     <main>
     <div class="container my-5">
         <h2>List of Past Year</h2>
@@ -67,7 +57,6 @@
                     <td>
                         <a class='btn btn-primary btn-sm' href='updatePastYear.php?paper_id={$row['paper_id']}'>Update</a>
                         <a class='btn btn-danger btn-sm' href='deletePastYear.php?paper_id={$row['paper_id']}'>Delete</a>
-                        <a class='btn btn-success btn-sm' href='downloadStudyMaterial.php?file_id={$row['paper_id']}'>Download</a>
                     </td>
                 </tr>";
                 }
